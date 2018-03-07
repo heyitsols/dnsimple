@@ -1,3 +1,50 @@
 #! /usr/bin/env bash
 
-echo "Hey there."
+declare -r endpoint="https://api.dnsimple.com/v2/"
+
+
+
+api_key="<enter your key here>"
+
+# ./dnsimple list
+
+account()
+{
+    curl_endpoint "whoami" | jq '.'
+}
+
+list()
+{
+    curl_endpoint "${account_id}/domains" | jq '.'
+}
+
+curl_endpoint()
+{
+    curl -sH "Authorization: Bearer $api_key" "{$endpoint}{$1}"
+}
+
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -a | --account-id ) shift
+                            account_id=$1
+                            ;;
+        account        )    account
+                            ;;
+        list           )    list
+                            ;;
+        *              )    usage
+                            exit 1;
+    esac
+    shift
+done
+
+exit 0; 
+case $1 in
+    account ) account
+             ;;
+    list )   list
+             ;;
+    * )      usage
+             exit 1;
+esac
