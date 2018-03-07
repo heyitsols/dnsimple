@@ -2,7 +2,7 @@
 A bash script for interacting with your dnsimple account.
 
 ## Installation
-Requires `jq` in your `bin`. [https://stedolan.github.io/jq/](Download).
+Requires `jq` in your `bin`. [Download](https://stedolan.github.io/jq/).
 
 Make `dnsimple` executable and move to `bin`.
 
