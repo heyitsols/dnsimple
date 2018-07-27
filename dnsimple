@@ -4,6 +4,14 @@ declare -r endpoint="https://api.dnsimple.com/v2/"
 
 api_key="$DNSIMPLE_API_KEY"
 
+check_api_key()
+{
+    if [[ -z $DNSIMPLE_API_KEY ]] ; then
+        echo "\$DNSSIMPLE_API_KEY not set"
+        exit 1
+    fi
+}
+
 account()
 {
     curl_endpoint "whoami" | jq '.'
@@ -14,10 +22,24 @@ list()
     curl_endpoint "${account_id}/domains" | jq '.'
 }
 
+usage()
+{
+    cat <<EOF
+
+Usage:
+$0 account - Displays your account details
+$0 list    - Displays a list of domains registered or hosted with dnsimple
+$0 usage   - Displays this usage message
+
+EOF
+}
+
 curl_endpoint()
 {
     curl -sH "Authorization: Bearer $api_key" "{$endpoint}{$1}"
 }
+
+check_api_key
 
 while [ "$1" != "" ]; do
     case $1 in
