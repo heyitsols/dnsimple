@@ -11,7 +11,7 @@ chmod +x dnsimple; mv dnsimple /usr/local/bin;
 ```
 
 ### API Key
-Get your dnsimple API key by logging in and going to Account > API Tokens > New Access Token. For now, paste it into the script, just make sure you don't commit to version control.
+Get your dnsimple API key by logging in and going to Account > API Tokens > New Access Token. Set this as environment variable `DNSIMPLE_API_KEY`
 
 ### Account ID
 Working on grabbing the account id from a json request. For now, you'll need to provide it at the command line. See usage.

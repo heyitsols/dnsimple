@@ -2,7 +2,7 @@
 
 declare -r endpoint="https://api.dnsimple.com/v2/"
 
-api_key="<enter your key here>"
+api_key="$DNSIMPLE_API_KEY"
 
 account()
 {
